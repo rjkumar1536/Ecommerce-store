@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useEffect} from 'react'
 import { Col, Row } from 'react-bootstrap';
 import Product from '../components/Product';
-import products from '../products';
+import { useSelector, useDispatch } from 'react-redux';
+import { listProducts } from '../modules/actions/productActions';
 
 const Homescreen = () => {
+    const {products} = useSelector(state => state.productList);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(listProducts());
+    }, [dispatch]);
+
     return (
         <>
             <Row>
