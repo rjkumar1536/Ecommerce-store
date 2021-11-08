@@ -42,20 +42,20 @@ const CartScreen = ({location, match, history}) => {
             <Row>
                 <Col xs = {9}>
                     {cartItems.length === 0 && <Message variant="info" children = "Shopping Cart is Empty" />}
-                    <ListGroup xs={6}>
+                    <ListGroup xs={9}>
                         {
                             cartItems.map(({id, name, price, quantity, image}) => 
                                     <ListGroup.Item key={id}>
-                                        <Row className="d-flex">
-                                            <Col xs={1} >
+                                        <Row className="d-flex align-items-center">
+                                            <Col xs={2} >
                                                 <Image src={image} thumbnail  />
                                             </Col>
-                                            <Col xs={3}>
+                                            <Col xs={4}>
                                                 <Link to={`/products/${id}`}>
                                                     <p>{name}</p>
                                                 </Link>
                                             </Col>
-                                            <Col xs={2}>
+                                            <Col xs={3}>
                                                 <p>${(price*quantity).toFixed(2)}({quantity} item)</p>
                                             </Col>
                                             <Col xs={1} class="pr-0">
@@ -88,12 +88,15 @@ const CartScreen = ({location, match, history}) => {
                             </Row>
                             <Row>
                                 <Col>
+                                    <h5>Total</h5>
+                                </Col>
+                                <Col>
                                      <h5>${cartItems.reduce((acc, cartItem) => acc + cartItem.quantity * cartItem.price,0).toFixed(2)}</h5>
                                 </Col>
                             </Row>
-                            <Row>
+                            <Row className="mt-5">
                                 <Col>
-                                <Button variant="dark" className="d-flex" onClick = {checkoutHandler}>PROCEED TO CHECKOUT</Button>
+                                    <Button variant="dark" className="d-flex" onClick = {checkoutHandler}>PROCEED TO CHECKOUT</Button>
                                 </Col>
                             </Row>
                         </ListGroupItem>
